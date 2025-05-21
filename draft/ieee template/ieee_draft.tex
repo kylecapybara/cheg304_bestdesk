@@ -1,0 +1,336 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{float}
+
+\bibliographystyle{IEEEtran}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{The Best Seat at UD}
+
+\author{
+\IEEEauthorblockN{Maxmillian Stratton, Jackson Rau, Quinlan Kraft, Braden Rogers, Kyle Wodehouse}
+\IEEEauthorblockA{
+University of Delaware\\
+}
+}
+\maketitle
+\begin{abstract}
+Classroom ergonomics impact learning and it is of interest to find out which rooms line up with ergonomic gospel (the best) and which fall short (the worst). We analyzed desk measurements across various classrooms at the University of Delaware to determine which room contained the “best” desks for students. We measured four dimensions: desk length, desk width, seat height (floor to seat), and desk height (floor to writing surface). Using room labels from UD’s Central Inventory Classrooms (CIC), we examined trends related to room type and building. The “best” desk was determined by how closely its dimensions matched values provided by classroom ergonomics literature. Using a standardized 2-norm distance metric, Colburn Lab 366 was closest to \cite{mohamed} and Penny Hall 209 was closest to \cite{Ansari}. By the same metric, Memorial 48 and Gore 316 were furthest from \cite{mohamed} and Memorial 127 was furthest from \cite{Ansari}.\end{abstract}
+\section{Introduction}
+
+Chairs and the culture of sitting down developed in Ancient Egypt \cite{egypt}. Egyptian chairs, at least those preserved in tombs, look quite different from the 21st century chair. They sat closer to the ground and were made from lavish materials on a wooden frame---far from most UD chairs. One can only wonder if there is a historically accurate Egyptian chair chilling inside President Dennis Assanis’s home. 
+
+Everyone has experienced, or is currently experiencing, the dreadful ergonomics of Smith 209. The backrest angle feels awkward for taking notes and the arm rests are egregiously high to the point where one cannot even relax the shoulders. On the other hand, Willard 319 features adjustable chairs and plentiful desk space disconnected from the chair itself.\footnote{oddly \cite{mohamed} argues chairs with desks connected are favorable to desks where the chair is independent since students tend to lean over the desk while writing instead of keeping their back straight. But for some reason they only mention they made observations and are like “oh yeah they slouched real bad” without ever describing their methods or fully presenting their results…}
+
+Experiencing both immaculate and disastrous seating raises the question: what is the best seat at UD? To answer this question (and the funnier question of what is the worst seat at UD) we need to probe the population of desks around campus. Then, once a representative sample of desk and chair parameters is collected it can be analyzed as a whole and also compared to each other to figure out how UD`s desks fare overall and if any desks are fantastic or deeply flawed.
+%{M.G. Mohamed Thariq et. al, page 1} Ansari et. al 
+
+Ergonomics researchers acknowledge the importance of ergonomics for students` experience and conclude sitting in fixed tables and chairs lead to strained posture and poor experiences\cite{mohamed}.  A pair of studies \cite{mohamed} \cite{Ansari} measured college students in Iran and Sri Lanka and developed chair dimensions based on their knowledge of sitting ergonomics and certain quantiles of their anthropic college student measurements.  Table \ref*{tab:dimension_comparison} includes the measurements \cite{mohamed} and \cite{Ansari} determined were optimal for college student desks.\footnote{the dimensions for both references were converted into inches with the appropriate conversion factors before their inclusion in Table \ref*{tab:dimension_comparison}.}
+
+
+
+    
+\begin{table}[htbp]
+    \caption{ Design Dimensions from ~\cite{mohamed} \& ~\cite{Ansari}}
+    \begin{center}
+    \begin{tabular}{c c c}
+    \toprule
+    \textbf{Chair Feature} & \textbf{Dimension ~\cite{mohamed} (in)} & \textbf{Dimension ~\cite{Ansari} (in)} \\
+    \midrule
+    Seat height & 17.52 & 17.32 \\
+    \midrule
+    Desk height & 9.02 & 7.48--11.42 \\
+    \midrule
+    Desk length & 17.83 & 20.08 \\
+    \midrule
+    Desk width & 7.80 & 25.59 \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:dimension_comparison}
+    \end{center}
+\end{table}
+
+\begin{table*}
+    \centering
+    \caption{Central Classroom Types}
+    \begin{tabular}{@{}llp{8cm}@{}}
+    \toprule
+    \textbf{Classroom Type} & \textbf{Code} & \textbf{Description} \\
+    \midrule
+    Auditorium & AUD & Fixed seating with tablet arms, theater style, tiered floor \\
+    Case Study Room & CASE & Movable seats behind fixed tables, theater style, tiered floor \\
+    Flexible Seating & FLEX & Individual tablet arm chairs on wheels;  can be configured as needed \\
+    Lecture Room & LCTR & Individual tablet arm chairs \\
+    Problem Based Learning Room & PBL & Round or hexagon tables surrounded by 5 or 6 chairs \\
+    Seminar Room & SMNR & One large table surrounded by chairs \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:roomcodes}
+\end{table*}
+
+
+Using the dimensions provided by the literature, desks and chairs found in common UD lecture rooms, specifically rooms classified by the central classroom inventory (see table \ref*{tab:roomcodes} for the room codes and descriptions), may be compared to a standard and the faults of poor seats may be understood from an objective angle rather than personal experiences of uncomfort while sitting in them.
+
+
+
+
+\section{Methods}
+
+During data collection we started by identifying the building, room number, and room type that the measurements were taken in. Next, we identified the desk “type” that was being measured. When performing this step, each time we encountered a new desk “type”, we added it to a reference document with an image and description to catalog all different styles of desk encountered. Doing so allowed for easier data collection as descriptions and images didn't have to be repeated between rooms when the desks were of the same “type”, and could instead be generalized per desk “type”. Now it's Morbin' time.\footnote{This is in reference to the hit film 'Morbius' directed by Daniel Espinosa.}
+
+Next, we took measurements of the desks. We measured the height from the floor to the tallest point of the seat of the desk (i.e., where someone would sit) and then measured the height from the floor to the tallest point of the physical desk (i.e., the writing surface). For both of these measurements, since the seat and desk surface might be angled, we measured their highest points for consistency. Lastly, we measured the width and length of the “usable” desk area (i.e., not including the armrest portion) by approximating it as a rectangle. For shared tables or desks, this was calculated by finding the overall area and then dividing by the number of seats at the table, thus giving the usable area per person at the table. This data was collected in a spreadsheet application with the following columns: building, room number, room type, desk type, seat height, desk height, desk width, and desk length.
+
+
+
+
+\section{Discussion and Results}
+\subsection{Descriptive Statistics}
+
+This section may feel like figure spam. Figure \ref*{fig:hist} contains a histogram of the measured desk areas. This shows how the entire population of desk areas is distributed. Most desks are around 200 in$^2$ with very few above 600 in$^2$. The super outlier is Gore 316.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{vis/hist.pdf}
+    \caption{Histogram of Desk Area (in$^2$)}
+    \label{fig:hist}
+\end{figure}
+
+Since the vast majority of  rooms we measured were labeled in UD's course inventory, we can consider the different classes of rooms\footnote{Not to be confused with classrooms.} (project based learning, case study, etc) as different populations. The areas of these different populations are visualized as box plots in Figure \ref*{fig:boxplots}.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{vis/boxplots.pdf}
+    \caption{Box Plots of different CIC labels}
+    \label{fig:boxplots}
+\end{figure}
+
+The different styles of rooms have quite different desk areas! Duh! Perhaps the auditorium desks are there for a bare minimum, multi-purpose room and the project based learning and case study rooms lend themselves to more desk space for cracking open some cases or problem sets. This is complete conjecture.
+
+Now we shift focus from desk area towards seat and desk height from the floor. Figure \ref*{fig:seat_desk_height} shows the relationship between how high the seat is from the ground and how high the desk surface is from the seat for the different room classes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{vis/height vs width.pdf}
+    \caption{Seat Height vs. Distance Between Desk and Seat by room label}
+    \label{fig:seat_desk_height}
+\end{figure}
+
+The auditorium being a clear outlier  lines up with lived experience. 
+
+Figure \ref*{fig:rectangles} is a visually busy yet interesting representation of the desk width and length. The red and purple rectangles are values from the literature and clearly a large subset of our data has a smaller width and length than \cite{mohamed}. Not a single desk had a width as thin as \cite{Ansari} which raises questions about what is going on with \cite{Ansari}. Another interesting thing is you can kinda see that the majority of desks will be around that 200 in$^2$ sweet spot in Figure \ref*{fig:hist} since that 14-17 in range is where a square would have an area of 200 in$^2$ or so.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{vis/rectangles.pdf}
+    \caption{Length and Width measurements as Rectangles}
+    \label{fig:rectangles}
+\end{figure}
+
+Figure \ref*{fig:rectanglesCAT} contains information similar to the box plot, but gives more information about the shapes of the desks for the different labels. The auditorium still shows up as an odd one out---a singleton standing lonely outside the rest of the data. Sad sad singleton.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{vis/categorical_lw.pdf}
+    \caption{Desk Length vs. Desk Width, Categorized}
+    \label{fig:rectanglesCAT}
+\end{figure}
+
+
+\subsection{Determining the Best Seat}
+When calculating the seat whose parameters are closest to the literature provided parameters, we need to borrow a wrench from the ml toolbox and account for the difference in spread and magnitude of the different factors. For instance, if we just sloppily found the 2-norm distance between all of our measurements and the literature, the parameters with the largest variance and range would dominate our distance calculation. So we standardized our data by effectively converting all our measurements into t-scores using our sample mean and sample standard deviations for each feature. Equation 1 contains vague information about this standardization in math text therefore it is valid.
+
+\[ x \longrightarrow \frac{x - \bar{x}}{s_x} \label{eqn:standardize} \tag{1} \]
+
+A brief, nerdy ramble about distance surely fits in here. Many machine learning models and techniques use distance in one way or another. For $k$ nearest neighbors you only know if a neighbor is near if you know how far they are. In fact, we are really searching for the 1-nearest neighbor to our references so it is quite reasonable to treat this as such and standardize the columns. Some playing around could be done with which norm should be used (2-norm, Manhattannorm, $\infty$-nom, etc) but no part of this analysis requires something that spicy.
+
+Now our standardized distance should be able to catch a more accurate best desk instead of being dominated by the parameter with the highest magnitude. Using the chair height, desk height, desk length, and desk width from \cite{Ansari}, Colburn 366 is found to be the best seat at UD. Using \cite{mohamed}, Penny 209 is found to be the best desk at UD. 
+
+\subsection{The Worst Seat}
+
+Using the same distance metric as discussed above we may also find the worst desks with respect to both references. Compared to \cite{Ansari}, Memorial 127 was the worst. Compared to \cite{mohamed} Memorial 48 and Gore 316 tied for worst desk.
+
+
+
+
+
+\section{Conclusion}
+
+In our exploration of desk ergonomics, we found a clear divide between each room style. Generally, desk areas in auditoriums and lecture halls tended to have anywhere from 600-1000 square inches less than seminar rooms. This is seemingly due to auditoriums and lecture halls having single writing surfaces per seat compared to a shared table space in seminar rooms.
+Overall, when compared to the reference desks, the best seats on campus are Colburn 366 and Penny 209. These desks provide the ideal balance of desk length, desk width, seat height, and desk height. In contrast to this, Memorial 127, Memorial 48, and Gore 316 are considered to be the worst seats on campus depending on the source referenced.
+
+Moving forward, future studies could enhance this analysis by considering additional factors beyond basic measurements. Some factors that could be considered are accessibility to an outlet, cushioning, or even the ability to adjust chair height. Unfortunately these factors cannot be measured as easily as physical dimensions but would be an interesting design challenge in future research.
+
+
+
+\section*{Acknowledgment}
+
+A thank you is owed to Prof. Enszer for suggesting to look at UD`s central classroom inventory.
+
+\bibliography{zotero}   
+
+
+
+\section*{Appendix}
+
+\subsection{Notes on Data Storage and Analysis}
+
+Data was stored in a shared google sheet for accessability. Analysis and visualization was completed in python. As far as packages go, pandas was used to wrangle the data and matplotlib was used to create the visualizations. 
+
+\subsection{Additional visualizations}
+
+There are no additional visualizations. Get fooled.
+
+
+\subsection*{How our references found their optimal chair}
+
+Table \ref*{tab:determinants1} shares how \cite{mohamed} determined their chair parameters and Table \ref*{tab:determinants2} shares the same information for \cite{Ansari}. As mentioned briefly before both of these papers took measurements of students and then from those sample statistics proposed chair dimensions.
+
+\begin{table}[H]
+    \caption{Chair Features and Determinants from\cite{mohamed}}
+    \begin{center}
+    \begin{tabular}{c c}
+    \toprule
+    \textbf{Chair Feature} & \textbf{Determinant} \\
+    \midrule
+    Seat surface height & Seat height boundary case + 25 mm allowance \\
+    \midrule
+    Desktop height & Elbow height, sitting boundary case \\
+    \midrule
+    Desktop length & 50\%ile Forearm--finger tip length \\
+    \midrule
+    Desktop width & As per existing desktop width \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:determinants1}
+    \end{center}
+\end{table}
+
+\begin{table}[H]
+    \caption{Chair Features and Determinants from~\cite{Ansari}}
+    \begin{center}
+    \begin{tabular}{c c}
+    \toprule
+    \textbf{Chair Feature} & \textbf{Determinant} \\
+    \midrule
+    Seat height & 5th percentile (female) of popliteal height \\
+    \midrule
+    Desk height & 5th--95th percentile (all) of elbow height \\
+    \midrule
+    Desk length & 95th percentile (male) of elbow-fingertip length \\
+    \midrule
+    Desk width & 95th percentile (male) of elbow to elbow width \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:determinants2}
+    \end{center}
+\end{table}
+\vfill
+
+
+
+\pagebreak
+\onecolumn
+
+\subsection{Reproduced Figures from \cite{mohamed} \cite{Ansari}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{vis/mohamed_chair.png}
+\end{figure}
+
+this ``figure 8'' is reproduced without permission from \cite{mohamed}. this is a representative 3d visualization of their optimal chair.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{vis/other_chair.png}
+\end{figure}
+
+This chair design is reproduced without permission from\cite{Ansari}. This is also a representitive 3d visualization of their optimal chair. But from 3 angles. 
+
+
+
+\subsection{literally just all of our data}
+See the next page for our data. You're probably thinking ``why are the numbers so oddly nice for 99\% of these'' and the answer is I think one of our group members is unsure of how to properly use a measuring tape.
+
+
+% sath group says unrotate
+
+\clearpage
+\onecolumn
+\centering
+\begin{tabular}{lrrrrlr}
+    \toprule
+    room & width (in) & length (in) & height from floor (in) & chair height (in) & room type & Room Count \\
+    \midrule
+    Recitation Hall 101 & 18.50 & 11.19 & 27.75 & 17.38 & LCTR & 1 \\
+    Smith Hall 209 & 12.50 & 11.50 & 28.75 & 17.00 & LCTR & 1 \\
+    Purnell Hall 115 & 10.12 & 12.50 & 23.50 & 16.00 & AUD & 1 \\
+    Purnell Hall 227 & 16.50 & 11.50 & 28.00 & 17.00 & LCTR & 1 \\
+    Ewing Hall 204 & 18.12 & 11.50 & 27.00 & 17.25 & FLEX & 1 \\
+    Gore Hall 308 & 14.75 & 11.75 & 29.50 & 18.25 & LCTR & 1 \\
+    Penny 209 & 26.75 & 23.50 & 28.75 & 17.75 & PBL & 2 \\
+    Ise 110 & 22.00 & 12.25 & 28.25 & 18.00 & FLEX & 12 \\
+    Pearson 114 & 21.50 & 13.00 & 29.00 & 19.50 & LCTR & 1 \\
+    Pearson 218 & 22.00 & 12.25 & 28.25 & 18.00 & nan & 1 \\
+    Colburn 366 & 10.13 & 12.50 & 27.00 & 17.75 & nan & 1 \\
+    Colburn 102 & 29.75 & 17.50 & 28.75 & 17.75 & LCTR & 1 \\
+    Colburn 109 & 14.63 & 13.75 & 27.75 & 16.75 & LCTR & 2 \\
+    Robinson 206 & 29.50 & 19.75 & 28.00 & 16.25 & nan & 1 \\
+    Robinson 203 & 34.50 & 20.00 & 30.00 & 17.75 & CASE & 1 \\
+    Robinson 202 & 30.00 & 24.00 & 29.00 & 17.75 & nan & 1 \\
+    Memorial 37 & 16.75 & 11.00 & 28.00 & 17.75 & LCTR & 9 \\
+    Memorial 48 & 36.00 & 36.00 & 28.75 & 16.75 & SMNR & 1 \\
+    Memorial 28 & 9.60 & 9.60 & 28.50 & 18.25 & nan & 1 \\
+    Memorial 107 & 36.00 & 21.00 & 28.50 & 18.25 & SMNR & 3 \\
+    Memorial 110 & 28.00 & 30.00 & 28.75 & 17.75 & PBL & 1 \\
+    Memorial 109 & 16.00 & 26.00 & 28.75 & 18.25 & PBL & 1 \\
+    Memorial 127 & 28.25 & 18.75 & 31.50 & 21.25 & CASE & 1 \\
+    Brown Lab 101 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 1 \\
+    Brown Lab 116 & 13.00 & 20.50 & 29.00 & 17.75 & PBL & 1 \\
+    Brown Lab 206 & 16.00 & 26.00 & 28.25 & 17.75 & LCTR & 1 \\
+    Brown Lab 220 & 29.75 & 29.50 & 28.75 & 17.75 & nan & 1 \\
+    Brown Lab 207 & 18.25 & 11.62 & 27.00 & 18.50 & LCTR & 2 \\
+    Gore Hall 102 & 18.25 & 11.75 & 28.25 & 17.50 & FLEX & 10 \\
+    Gore Hall 116 & 25.00 & 22.00 & 29.25 & 19.50 & CASE & 3 \\
+    Gore Hall 218 & 22.00 & 12.25 & 28.25 & 18.00 & FLEX & 2 \\
+    Gore Hall 208 & 16.25 & 11.25 & 28.50 & 16.25 & LCTR & 1 \\
+    Gore Hall 304 & 14.75 & 12.00 & 29.75 & 18.00 & LCTR & 7 \\
+    Gore Hall 316 & 36.00 & 36.00 & 28.75 & 16.75 & SMNR & 2 \\
+    Sharp 100 & 14.50 & 13.50 & 28.50 & 17.75 & FLEX & 9 \\
+    Sharp 130 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 2 \\
+    Wolf 100 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 1 \\
+    Smith Hall 209 & 12.50 & 11.50 & 28.75 & 17.00 & LCTR & 1 \\
+    Smith Hall 120 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 4 \\
+    Kirkbride 100 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 7 \\
+    Ewing Hall 204 & 18.50 & 11.50 & 27.75 & 17.25 & FLEX & 4 \\
+    Purnell Hall 115 & 10.00 & 11.50 & 23.00 & 16.25 & AUD & 1 \\
+    Purnell Hall 116 & 30.00 & 24.00 & 28.50 & 17.25 & CASE & 2 \\
+    Purnell Hall 228 & 16.50 & 11.50 & 28.00 & 17.00 & LCTR & 17 \\
+    Purnell Hall 234 & 16.00 & 26.00 & 28.75 & 18.25 & SMNR & 1 \\
+    Purnell Hall 331 & 21.50 & 13.00 & 28.25 & 18.50 & LCTR & 2 \\
+    Alison 325 & 15.00 & 13.75 & 28.50 & 17.25 & FLEX & 11 \\
+    Willard 208 & 19.41 & 19.41 & 29.12 & 18.12 & PBL & 1 \\
+    Willard 217 & 18.92 & 18.92 & 30.12 & 18.62 & PBL & 1 \\
+    Willard 218 & 18.92 & 18.92 & 30.12 & 18.62 & PBL & 1 \\
+    Willard 323 & 19.41 & 19.41 & 29.12 & 18.12 & PBL & 1 \\
+    Willard 319 & 19.41 & 19.41 & 29.12 & 18.12 & PBL & 1 \\
+    \bottomrule
+    \end{tabular}
+    
+
+\vspace{1em}
+this data is (probably) availible as a csv file on the github page for this project.
+\twocolumn
+\clearpage
+
+
+
+\end{document}
